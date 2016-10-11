@@ -37,18 +37,18 @@ def get_endpoints(eps):
  return host.strip("\n"), port.strip("\n"), eps
 
 def database_insert():
- conn_string = "host='localhost' dbname='its' user='psycop' password='ies2oogaiZauPhoo'"
+ conn_string = "host='localhost' dbname='DB' user='psycop' password='PASSWORD'"
  conn = psycopg2.connect(conn_string)
  cursor = conn.cursor()
- cursor.execute("INSERT INTO mc1tier1 VALUES('" + str(uuid.uuid4()) + "','" + firewall  + "','" +  interface + "','" + aclName + "','" +  action + "','" +  protocol + "','" +  sourceIP + "','" + sourcePort + "','" + destIP + "','" + destPort + "');")
+ cursor.execute("INSERT INTO dbtable VALUES('" + str(uuid.uuid4()) + "','" + firewall  + "','" +  interface + "','" + aclName + "','" +  action + "','" +  protocol + "','" +  sourceIP + "','" + sourcePort + "','" + destIP + "','" + destPort + "');")
  conn.commit()
  conn.close()
 
 def database_check():
- conn_string = "host='localhost' dbname='its' user='psycop' password='ies2oogaiZauPhoo'"
+ conn_string = "host='localhost' dbname='DB' user='psycop' password='PASSWORD'"
  conn = psycopg2.connect(conn_string)
  cursor = conn.cursor()
- cursor.execute("SELECT * FROM mc1tier1 WHERE aclname='" + aclName + "' AND action='" + action + "' AND proto='" + protocol + "' AND saddr='" + sourceIP + "' AND sports='" + sourcePort + "' AND daddr='" + destIP + "' AND dports='" + destPort + "';")
+ cursor.execute("SELECT * FROM dbtable WHERE aclname='" + aclName + "' AND action='" + action + "' AND proto='" + protocol + "' AND saddr='" + sourceIP + "' AND sports='" + sourcePort + "' AND daddr='" + destIP + "' AND dports='" + destPort + "';")
  records = cursor.fetchall()
  print records
  if len(records) < 1:
