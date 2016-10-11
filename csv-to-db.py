@@ -84,7 +84,7 @@ def split_rules(infile):
 
 def mongoconnect(dictin):
  client = MongoClient()
- db = client.ITS.tier2fw
+ db = client.test.tier2fw
  #print type(dictin)
  if confirm == 'y':
   db.insert_one(dictin)
